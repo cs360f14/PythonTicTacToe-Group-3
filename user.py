@@ -55,24 +55,42 @@ class user (player):
 		if the place chosen is taken or invalid, keep on asking for 
 		input until it is valid
 		"""
-		spotTaken = True
+		valid = False
+		point = self.userInput()
+		valid = self.verifyInput(point, board)
 		
-		while spotTaken : 
-			print("")
+		while not valid:
+			point = self.userInput()
+			valid = self.verifyInput(point, board)
+		
+		return point
+		
+	def userInput (self) :
+		""" asks for an x and y point from the user
+		
+		if an exception is raised at all, make the point -1,-1
+		"""
+		try :
 			print ("X?")
 			x = int(input(">>> "))
-			while x < 0 and x > 4 : 
-				x = int(input(">>> "))
-			
 			print("Y?")
 			y = int(input(">>> "))
-			while y < 0 and y > 4 :
-				y = int(input(">>> "))
+			print("")
+		except :
+			x = -1
+			y = -1
+		finally :
+			return Point(x, y)
 			
-			point = Point(x,y)
-			spotTaken = board.spotTaken(point)
+	def verifyInput (self, point, board) :
+		""" checks to see if the point has a valid placement on board
 		
-		return Point(x,y)
+		if invalid, return False. Otherwise, return True.
+		"""
+		if not board.checkForRange(point) or board.spotTaken(point): 
+			return False
+		else :
+			return True
 
 	def incrementWins(self) :
 		""" increases the user's number of wins by 1 """

@@ -37,6 +37,15 @@ class TestUserFunctions (unittest.TestCase) :
 		"""checks that getWDraws returns the correct number of draws"""
 		self.assertEqual (self.user.getDraws(), 1)
 		
+	def test_verifyInput_good (self) :
+		"""test a point that is not taken on the board"""
+		self.assertTrue(self.user.verifyInput(self.point, self.board))
+	
+	def test_verifyInput_bad (self) :
+		"""test a point that is taken on the board"""
+		self.board.insertMove(self.point, "X")
+		self.assertFalse(self.user.verifyInput(self.point, self.board))	
+		
 	def test_incrementWins (self) :
 		"""checks that incrementWins increases the number of wins by 1"""
 		self.user.incrementWins()

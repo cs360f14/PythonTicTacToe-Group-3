@@ -36,7 +36,8 @@ def main() :
 	while not gameQuit :
 		
 		while Game.gameRunning() :
-			Game.getMove()
+			point = Game.getPlacement()
+			Game.turn (point)
 			Game.draw()
 		
 		print()
