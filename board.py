@@ -176,10 +176,9 @@ class Board :
 			return False
 			
 	def checkForRange (self, move) :
-		""" checks if the move passed in is within the appropriate range
+		""" checks if a given move is able to be placed in board
 	
-		If the x and y of the move is between 1 and 3 inclusive,
-		return true. Otherwise, return false.
+		if the move is greater than three or less than one, its no good
 		"""
 		if (move.y > 0 and move.y < 4 and move.x > 0 and move.x < 4) :
 			return True

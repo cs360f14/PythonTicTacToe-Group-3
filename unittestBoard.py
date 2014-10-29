@@ -297,5 +297,123 @@ class TestBoardFunctions(unittest.TestCase):
 		"""
 		self.assertFalse(self.board.checkForRange(Point(60,-50)))
 
-
+	def test_checkTwoHorizontalYes (self) :
+		"""
+		Tests to see if there are two pieces in a line
+		"""
+		self.board.insertMove(Point(1,1), 'X')
+		self.board.insertMove(Point(2,1), 'X')
+		Point1 = (self.board.checkTwoHorizontal('X'))
+		Point2  = Point(3,1)
+		self.assertEqual(Point1.x, Point2.x)
+		self.assertEqual(Point1.y, Point2.y)
 		
+	def test_checkTwoHorizontalNo (self) :
+		"""
+		Checks to make sure it returns neg values. 
+		"""
+		self.board.insertMove(Point(1,1), 'X')
+		self.board.insertMove(Point(2,2), 'X')
+		Point1 = (self.board.checkTwoHorizontal('X'))
+		Point2  = Point(-1,-1)
+		self.assertEqual(Point1.x, Point2.x)
+		self.assertEqual(Point1.y, Point2.y)
+		
+	def test_checkTwoVerticalYes (self) :
+		"""
+		Tests to see if there are two pieces in a line
+		"""
+		self.board.insertMove(Point(1,1), 'X')
+		self.board.insertMove(Point(1,2), 'X')
+		Point1 = (self.board.checkTwoVertical('X'))
+		Point2  = Point(1,3)
+		self.assertEqual(Point1.x, Point2.x)
+		self.assertEqual(Point1.y, Point2.y)
+		
+	def test_checkTwoVerticalNo (self) :
+		"""
+		Tests to see if it gets back a neg
+		"""
+		self.board.insertMove(Point(1,1), 'X')
+		self.board.insertMove(Point(2,2), 'X')
+		Point1 = (self.board.checkTwoVertical('X'))
+		Point2  = Point(-1,-1)
+		self.assertEqual(Point1.x, Point2.x)
+		self.assertEqual(Point1.y, Point2.y)
+		
+	def test_checkTwoLRDiagonalYes(self) :
+		"""
+		Tests to see if There is two piecs in a vertical row
+		"""
+		self.board.insertMove(Point(1,1), 'X')
+		self.board.insertMove(Point(2,2), 'X')
+		Point1 = (self.board.checkTwoLRDiagonal('X'))
+		Point2 = Point(3,3)
+		self.assertEqual(Point1.x, Point2.x)
+		self.assertEqual(Point1.y, Point2.y)
+		
+	def test_checkTwoLRDiagonalNo(self) :
+		"""
+		Tests to make sure it is returning a negative
+		"""
+		self.board.insertMove(Point(1,1), 'X')
+		self.board.insertMove(Point(3,2), 'X')
+		Point1 = (self.board.checkTwoLRDiagonal('X'))
+		Point2 = Point(-1,-1)
+		self.assertEqual(Point1.x, Point2.x)
+		self.assertEqual(Point1.y, Point2.y)
+		
+	def test_checkTwoLRDiagonalYes(self) :
+		"""
+		Tests to see if There is two piecs in a vertical row
+		"""
+		self.board.insertMove(Point(1,1), 'X')
+		self.board.insertMove(Point(2,2), 'X')
+		Point1 = (self.board.checkTwoLRDiagonal('X'))
+		Point2 = Point(3,3)
+		self.assertEqual(Point1.x, Point2.x)
+		self.assertEqual(Point1.y, Point2.y)
+		
+	def test_checkTwoRLDiagonalYes(self) :
+		"""
+		Tests the other diagonal option
+		"""
+		self.board.insertMove(Point(1,1), 'X')
+		self.board.insertMove(Point(3,3), 'X')
+		Point1 = (self.board.checkTwoLRDiagonal('X'))
+		Point2 = Point(2,2)
+		self.assertEqual(Point1.x, Point2.x)
+		self.assertEqual(Point1.y, Point2.y)
+
+	def test_checkTwoRLDiagonalNo(self) :
+		"""
+		Makes sure to reurn a negative
+		"""
+		self.board.insertMove(Point(1,1), 'X')
+		self.board.insertMove(Point(2,3), 'X')
+		Point1 = (self.board.checkTwoLRDiagonal('X'))
+		Point2 = Point(-1,-1)
+		self.assertEqual(Point1.x, Point2.x)
+		self.assertEqual(Point1.y, Point2.y)
+
+	def test_checkTwoInRow (self) :
+		"""
+		Makes sure it returns point correctly
+		"""
+		self.board.insertMove(Point(1,1), 'X')
+		self.board.insertMove(Point(1,2), 'X')
+		Point1 = self.board.checkTwoInRow('X')
+		Point2 = Point(1,3)
+		self.assertEqual(Point1.x, Point2.x)
+		self.assertEqual(Point1.y, Point2.y)
+		
+	def test_checkTwoInRowFail (self) :
+		"""
+		Makes sure it returns negative
+		"""
+		self.board.insertMove(Point(1,1), 'X')
+		self.board.insertMove(Point(3,2), 'X')
+		Point1 = self.board.checkTwoInRow('X')
+		Point2 = Point(-1,-1)
+		self.assertEqual(Point1.x, Point2.x)
+		self.assertEqual(Point1.y, Point2.y)
