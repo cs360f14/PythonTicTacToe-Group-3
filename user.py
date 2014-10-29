@@ -8,6 +8,9 @@
 # Purpose:		user of the game
 ########################################
 
+"""
+The User Module
+"""
 
 from player import *
 from board import *
@@ -20,7 +23,8 @@ class user (player):
 		""" Initializes an object of user
 		
 		passes the name and symbol entered to the player initializer
-		sets the wins, losses, and draws"""
+		sets the wins, losses, and draws
+		"""
 		player.__init__(self, name, symbol)
 		self._wins = wins
 		self._losses = losses
@@ -49,7 +53,8 @@ class user (player):
 		""" asks the user to place a symbol to the board
 		
 		if the place chosen is taken or invalid, keep on asking for 
-		input until it is valid """
+		input until it is valid
+		"""
 		spotTaken = True
 		
 		while spotTaken : 
@@ -80,6 +85,3 @@ class user (player):
 	def incrementDraws(self) :
 		""" increases the user's number of draws by 1 """
 		self._draws = self._draws + 1
-
-#testUser = user("Bob", "X", 1, 2, 3)
-#testUser.printData()
