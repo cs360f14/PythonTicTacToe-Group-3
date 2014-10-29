@@ -90,6 +90,48 @@ class game :
 		else :
 			return self._ai.getSymbol()
 			
+	def getPlacement (self) :
+		""" checks whose turn it is and calls their respective placement
+			functions. """
+		if (self._userTurn == True) :
+			point = self._user.placement(self._board)
+		else :
+			print("")
+			print ("Opponent's turn...")
+			print ("")
+			point = self._ai.placement(self._board)
+		
+		return point
+		
+	def turn (self, point) :
+		"""
+		accepts a point and places that point in the board
+		then checks if anyone has won or if the board is full
+		and the game is a tie. Then if either win or draw increment
+		the correct info in the user. Then update the turn.
+		"""
+		symbol = self.getTurn()
+		
+		print ("Entered point is: (",point.x,",", point.y,")")
+		print ("")
+		
+		self._board.insertMove(point, symbol)
+		
+		win = self._board.checkWin(symbol)
+		draw = self._board.isFull()
+		
+		if win :
+			self._gameRunning = False
+			if symbol == self._user.getSymbol() :
+				self._user.incrementWins()
+			elif symbol == self._ai.getSymbol():
+				self._user.incrementLosses()
+		elif draw :
+			self._user.incrementDraws()
+			self._gameRunning = False
+		else :
+			self.updateTurn()
+	
 	def getMove(self) : 
 		""""calls the placement function for whose turn it is 
 			then checks if anyone has won or if the board is full
