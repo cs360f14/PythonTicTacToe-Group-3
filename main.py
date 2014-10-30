@@ -28,7 +28,7 @@ def main() :
 	Game.printUserData()
 	print("")
 	Game.nameOpponent()
-	print("")
+	print("")0
 	Game.printOpponentData()
 	print("")
 	Game.draw()
